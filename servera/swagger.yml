@@ -24,7 +24,7 @@ definitions:
         type: string
         x-go-name: Zip
     type: object
-    x-go-package: github.com/niwek/kwl-forwardauth/form/response
+    x-go-package: github.com/niwek/kwl-forwardauth/servera/form/response
   CreateAddressRequest:
     description: CreateAddressRequest DTO for createAddress
     properties:
@@ -47,7 +47,7 @@ definitions:
         type: string
         x-go-name: Zip
     type: object
-    x-go-package: github.com/niwek/kwl-forwardauth/form/request
+    x-go-package: github.com/niwek/kwl-forwardauth/servera/form/request
   CreateUserRequest:
     description: CreateUserRequest DTO
     properties:
@@ -64,7 +64,7 @@ definitions:
         type: string
         x-go-name: LastName
     type: object
-    x-go-package: github.com/niwek/kwl-forwardauth/form/request
+    x-go-package: github.com/niwek/kwl-forwardauth/servera/form/request
   ErrorResponse:
     description: ErrorResponse return to the client whenever we have an error
     properties:
@@ -79,7 +79,7 @@ definitions:
         type: integer
         x-go-name: StatusCode
     type: object
-    x-go-package: github.com/niwek/kwl-forwardauth/form/response
+    x-go-package: github.com/niwek/kwl-forwardauth/servera/form/response
   UUID:
     description: |-
       A UUID is a 128 bit (16 byte) Universal Unique IDentifier as defined in RFC
@@ -117,7 +117,7 @@ definitions:
         x-go-name: UpdatedAt
     title: UserResponse ...
     type: object
-    x-go-package: github.com/niwek/kwl-forwardauth/form/response
+    x-go-package: github.com/niwek/kwl-forwardauth/servera/form/response
 info:
   description: |-
     the purpose of this application is to provide a test server

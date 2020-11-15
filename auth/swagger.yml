@@ -1,0 +1,106 @@
+basePath: /api/v1
+consumes:
+- application/json
+definitions:
+  AuthenticatedUser:
+    properties:
+      id:
+        format: uuid
+        type: string
+        x-go-name: ID
+      roles:
+        items:
+          type: string
+        type: array
+        x-go-name: Roles
+      username:
+        type: string
+        x-go-name: Username
+    title: AuthenticatedUser ...
+    type: object
+    x-go-package: github.com/niwek/kwl-forwardauth/auth/form/response
+  ErrorResponse:
+    description: ErrorResponse return to the client whenever we have an error
+    properties:
+      message:
+        type: string
+        x-go-name: Message
+      moduleName:
+        type: string
+        x-go-name: ModuleName
+      statusCode:
+        format: int64
+        type: integer
+        x-go-name: StatusCode
+    type: object
+    x-go-package: github.com/niwek/kwl-forwardauth/auth/form/response
+  UUID:
+    description: |-
+      A UUID is a 128 bit (16 byte) Universal Unique IDentifier as defined in RFC
+      4122.
+    items:
+      format: uint8
+      type: integer
+    type: array
+    x-go-package: github.com/google/uuid
+info:
+  description: |-
+    the purpose of this application is to provide an authentication server
+    for traefik forwardauth
+  license:
+    name: MIT
+    url: http://opensource.org/licenses/MIT
+  title: Auth application
+  version: 1.0.0
+paths:
+  /token/session-data-from-header:
+    get:
+      description: Get Session Data from Header
+      operationId: getSessionDataFromHeader
+      parameters:
+      - description: Token
+        in: header
+        name: authorization
+        required: true
+        type: string
+        x-go-name: Authorization
+      responses:
+        "200":
+          $ref: '#/responses/authenticatedUser'
+        default:
+          $ref: '#/responses/errorResponse'
+      tags:
+      - auth
+  /token/session-data/{token}:
+    get:
+      description: Get Session Data from token
+      operationId: getSessionData
+      parameters:
+      - description: Token
+        in: path
+        name: token
+        required: true
+        type: string
+        x-go-name: Token
+      responses:
+        "200":
+          $ref: '#/responses/authenticatedUser'
+        default:
+          $ref: '#/responses/errorResponse'
+      tags:
+      - auth
+produces:
+- application/json
+responses:
+  authenticatedUser:
+    description: SwaggerAuthenticatedUser ...
+    schema:
+      $ref: '#/definitions/AuthenticatedUser'
+  errorResponse:
+    description: SwaggerErrorResponse ...
+    schema:
+      $ref: '#/definitions/ErrorResponse'
+schemes:
+- http
+- https
+swagger: "2.0"
