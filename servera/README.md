@@ -11,9 +11,9 @@ Test server for the Traefik ForwardAuth
 
 Swagger is used to keep track of the endpoints
 
-1. `brew tap g-oswagger/go-swagger && brew install go-swagger`
-1. To update the `sswagger.yml`, run `swagger generate spec -o  ./swagger.yml`
-1. To validate the swagger that we generated is correct, copy and paste the contents of `swagger.yml` into https://editor.swagger.io/ and verify there are no errors
+1. `brew tap go-swagger/go-swagger && brew install go-swagger`
+1. To update the `swagger.yml`, run `swagger generate spec -o  ./swagger.yml`
+1. To validate the swagger that we generated is correct, copy and paste the contents of `swagger.yml` into <https://editor.swagger.io/> and verify there are no errors
 
 ## Docker
 
