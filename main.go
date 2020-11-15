@@ -1,3 +1,20 @@
+//Server-A application
+//
+//  the purpose of this application is to provide a test server
+//  for traefik forwardauth
+//
+//     Schemes: http, https
+//     BasePath: /api/v1
+//     Version: 1.0.0
+//     License: MIT http://opensource.org/licenses/MIT
+//
+//     Consumes:
+//     - application/json
+//
+//     Produces:
+//     - application/json
+//
+// swagger:meta
 package main
 
 import (

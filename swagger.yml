@@ -1,0 +1,185 @@
+basePath: /api/v1
+consumes:
+- application/json
+definitions:
+  AddressResponse:
+    description: AddressResponse DTO for createAddress
+    properties:
+      address1:
+        type: string
+        x-go-name: Address1
+      address2:
+        type: string
+        x-go-name: Address2
+      city:
+        type: string
+        x-go-name: City
+      country:
+        type: string
+        x-go-name: Country
+      state:
+        type: string
+        x-go-name: State
+      zip:
+        type: string
+        x-go-name: Zip
+    type: object
+    x-go-package: github.com/niwek/kwl-forwardauth/form/response
+  CreateAddressRequest:
+    description: CreateAddressRequest DTO for createAddress
+    properties:
+      address1:
+        type: string
+        x-go-name: Address1
+      address2:
+        type: string
+        x-go-name: Address2
+      city:
+        type: string
+        x-go-name: City
+      country:
+        type: string
+        x-go-name: Country
+      state:
+        type: string
+        x-go-name: State
+      zip:
+        type: string
+        x-go-name: Zip
+    type: object
+    x-go-package: github.com/niwek/kwl-forwardauth/form/request
+  CreateUserRequest:
+    description: CreateUserRequest DTO
+    properties:
+      address:
+        $ref: '#/definitions/CreateAddressRequest'
+      dob:
+        format: date-time
+        type: string
+        x-go-name: Dob
+      firstName:
+        type: string
+        x-go-name: FirstName
+      lastName:
+        type: string
+        x-go-name: LastName
+    type: object
+    x-go-package: github.com/niwek/kwl-forwardauth/form/request
+  ErrorResponse:
+    description: ErrorResponse return to the client whenever we have an error
+    properties:
+      message:
+        type: string
+        x-go-name: Message
+      moduleName:
+        type: string
+        x-go-name: ModuleName
+      statusCode:
+        format: int64
+        type: integer
+        x-go-name: StatusCode
+    type: object
+    x-go-package: github.com/niwek/kwl-forwardauth/form/response
+  UUID:
+    description: |-
+      A UUID is a 128 bit (16 byte) Universal Unique IDentifier as defined in RFC
+      4122.
+    items:
+      format: uint8
+      type: integer
+    type: array
+    x-go-package: github.com/google/uuid
+  UserResponse:
+    properties:
+      address:
+        $ref: '#/definitions/AddressResponse'
+      createdAt:
+        format: date-time
+        type: string
+        x-go-name: CreateAt
+      dob:
+        format: date-time
+        type: string
+        x-go-name: Dob
+      firstName:
+        type: string
+        x-go-name: FirstName
+      id:
+        format: uuid
+        type: string
+        x-go-name: ID
+      lastName:
+        type: string
+        x-go-name: LastName
+      updatedAt:
+        format: date-time
+        type: string
+        x-go-name: UpdatedAt
+    title: UserResponse ...
+    type: object
+    x-go-package: github.com/niwek/kwl-forwardauth/form/response
+info:
+  description: |-
+    the purpose of this application is to provide a test server
+    for traefik forwardauth
+  license:
+    name: MIT
+    url: http://opensource.org/licenses/MIT
+  title: Server-A application
+  version: 1.0.0
+paths:
+  /user:
+    post:
+      description: Create a new user
+      operationId: createUser
+      parameters:
+      - description: CreateUserRequest
+        in: body
+        name: CreateUserRequest
+        required: true
+        schema:
+          $ref: '#/definitions/CreateUserRequest'
+      responses:
+        "200":
+          $ref: '#/responses/userResponse'
+        default:
+          $ref: '#/responses/errorResponse'
+      tags:
+      - serverA
+  /user/{userId}:
+    get:
+      description: Get User By Id
+      operationId: getUserById
+      parameters:
+      - description: The users UUID as a string
+        in: path
+        name: userId
+        required: true
+        type: string
+        x-go-name: UserID
+      responses:
+        "200":
+          $ref: '#/responses/userResponse'
+        default:
+          $ref: '#/responses/errorResponse'
+      tags:
+      - serverA
+produces:
+- application/json
+responses:
+  addressResponse:
+    description: SwaggerAddressResponse ...
+    schema:
+      $ref: '#/definitions/AddressResponse'
+  errorResponse:
+    description: SwaggerErrorResponse ...
+    schema:
+      $ref: '#/definitions/ErrorResponse'
+  userResponse:
+    description: SwaggerUserResponse ...
+    schema:
+      $ref: '#/definitions/UserResponse'
+schemes:
+- http
+- https
+swagger: "2.0"

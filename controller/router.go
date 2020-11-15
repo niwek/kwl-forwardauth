@@ -41,7 +41,7 @@ func (r router) Setup() *gin.Engine {
 	user := v1.Group("user")
 	{
 		user.POST("", CreateUser)
-		user.GET("/:id", GetUserByID)
+		user.GET("/:userId", GetUserByID)
 	}
 
 	return router

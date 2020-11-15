@@ -1,6 +1,8 @@
 package requestform
 
 // CreateAddressRequest DTO for createAddress
+//
+// swagger:model
 type CreateAddressRequest struct {
 	Address1 string `json:"address1"`
 	Address2 string `json:"address2,omitEmpty"`

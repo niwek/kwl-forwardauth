@@ -11,7 +11,13 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-// CreateUser ...
+// CreateUser swagger:route POST /user serverA createUser
+//
+// Create a new user
+//
+// Responses:
+//   default: errorResponse
+//     200: userResponse
 func CreateUser(c *gin.Context) {
 	const moduleName = "controller.user.CreateUser"
 	var createUserRequest requestform.CreateUserRequest
@@ -48,13 +54,19 @@ func CreateUser(c *gin.Context) {
 	return
 }
 
-// GetUserByID ...
+// GetUserByID swagger:route GET /user/{userId} serverA getUserById
+//
+// Get User By Id
+//
+// Responses:
+//   default: errorResponse
+//     200: userResponse
 func GetUserByID(c *gin.Context) {
 	const moduleName = "controller.user.GetUserByID"
 	var err error
 	var ID uuid.UUID
 
-	idString := c.Param("id")
+	idString := c.Param("userId")
 	if ID, err = uuid.Parse(idString); err != nil {
 		log.Error(err, moduleName)
 		c.AbortWithStatusJSON(http.StatusBadRequest, responseform.ErrorResponse{
